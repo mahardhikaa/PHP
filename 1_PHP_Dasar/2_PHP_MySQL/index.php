@@ -1,6 +1,8 @@
 <?php
 $conn = mysqli_connect("localhost", "root", "", "phpdasar");
-var_dump($conn);
+
+$db = mysqli_query($conn, "SELECT * FROM mahasiswa");
+var_dump($db);
 ?>
 
 <!DOCTYPE html>
