@@ -1,3 +1,8 @@
+<?php
+$conn = mysqli_connect("localhost", "root", "", "phpdasar");
+var_dump($conn);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
