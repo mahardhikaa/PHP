@@ -15,10 +15,10 @@ function query($query){
 function add_data($add){
     global $conn;
 
-    $nama = $add["Nama"];
-    $NIM = $add["NIM"];
-    $jurusan = $add["Jurusan"];
-    $gambar = $add["Gambar"];
+    $nama = htmlspecialchars($add["Nama"]);
+    $NIM = htmlspecialchars($add["NIM"]);
+    $jurusan = htmlspecialchars($add["Jurusan"]);
+    $gambar = htmlspecialchars($add["Gambar"]);
 
     $query_add = "INSERT INTO mahasiswa
                   VALUES ('', '$nama', '$NIM', '$jurusan', '$gambar')";
@@ -35,6 +35,28 @@ function delete_data($delete){
     $query_delete = "DELETE FROM mahasiswa WHERE id='$id'";
 
     $db = mysqli_query($conn, $query_delete);
+    return mysqli_affected_rows($conn);
+}
+
+function update_data($update){
+    global $conn;
+
+    $id = $update['id'];
+
+    $nama = htmlspecialchars($update["Nama"]);
+    $NIM = htmlspecialchars($update["NIM"]);
+    $jurusan = htmlspecialchars($update["Jurusan"]);
+    $gambar = htmlspecialchars($update["Gambar"]);
+
+    $query_update = "UPDATE mahasiswa SET 
+                    nama = '$nama',
+                    NIM = '$NIM',
+                    Jurusan = '$jurusan',
+                    Gambar = '$gambar'
+                    WHERE id=$id";
+
+    $db = mysqli_query($conn, $query_update);
+
     return mysqli_affected_rows($conn);
 }
 ?>
