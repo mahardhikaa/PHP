@@ -23,9 +23,6 @@
 <head>
     <title>Metode Post</title>
     <style>
-        td{
-            border: 1px solid black;
-        }
         p {
             color: red;
         }
@@ -38,7 +35,7 @@
         <p>Username/password salah</p>
     <?php endif ?>
     <form action="" method="post">
-        <table>
+        <table cellspacing=0 cellpadding=2 border=1>
             <tr>
                 <td><label for="username">Username: </label></td>
                 <td><input type="text" name="username" id="username"></td>
