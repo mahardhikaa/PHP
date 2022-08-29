@@ -17,6 +17,17 @@ $mahasiswa = query("SELECT * FROM mahasiswa");
         table {
             text-align: center;
         }
+        button {
+            height: 35px;
+            margin-top: 25px;
+            border: 1px solid rgb(0,0,0);
+            padding: 0 15px;
+            background-color: rgb(0, 200, 0);
+            border-radius: 6px;
+        }
+        button:hover{
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -44,5 +55,6 @@ $mahasiswa = query("SELECT * FROM mahasiswa");
         </tr>
         <?php endforeach ?>
     </table>
+    <button type="button" onclick="location.href='add.php'">Tambah Data</button>
 </body>
 </html>
