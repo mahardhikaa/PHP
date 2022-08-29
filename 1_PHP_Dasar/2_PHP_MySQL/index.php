@@ -1,7 +1,7 @@
 <?php
-$conn = mysqli_connect("localhost", "root", "", "phpdasar");
+require "function.php";
 
-$db = mysqli_query($conn, "SELECT * FROM mahasiswa");
+$mahasiswa = query("SELECT * FROM mahasiswa");
 
 ?>
 
@@ -27,19 +27,19 @@ $db = mysqli_query($conn, "SELECT * FROM mahasiswa");
             <th>Jurusan</th>
             <th>Aksi</th>
         </tr>
-        <?php while($result = mysqli_fetch_assoc($db)) : ?>
+        <?php foreach($mahasiswa as $mhs) : ?>
         <tr>
-            <td><?= $result["id"] ?></td>
-            <td><img src="img/<?= $result["Gambar"]?>.png"></td>
-            <td><?= $result["Nama"] ?></td>
-            <td><?= $result["NIM"] ?></td>
-            <td><?= $result["Jurusan"] ?></td>
+            <td><?= $mhs["id"] ?></td>
+            <td><img src="img/<?= $mhs["Gambar"]?>.png"></td>
+            <td><?= $mhs["Nama"] ?></td>
+            <td><?= $mhs["NIM"] ?></td>
+            <td><?= $mhs["Jurusan"] ?></td>
             <td>
                 <a href="">edit</a>
                 <a href="">delete</a>
             </td>
         </tr>
-        <?php endwhile ?>
+        <?php endforeach ?>
     </table>
 </body>
 </html>
