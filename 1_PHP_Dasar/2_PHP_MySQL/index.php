@@ -2,7 +2,7 @@
 $conn = mysqli_connect("localhost", "root", "", "phpdasar");
 
 $db = mysqli_query($conn, "SELECT * FROM mahasiswa");
-var_dump($db);
+
 ?>
 
 <!DOCTYPE html>
@@ -27,17 +27,19 @@ var_dump($db);
             <th>Jurusan</th>
             <th>Aksi</th>
         </tr>
+        <?php while($result = mysqli_fetch_assoc($db)) : ?>
         <tr>
-            <td>1</td>
-            <td><img src="img/gambar1.png"></td>
-            <td>Hafizd Mahardhika</td>
-            <td>185090800111010</td>
-            <td>Fisika</td>
+            <td><?= $result["id"] ?></td>
+            <td><img src="img/<?= $result["Gambar"]?>.png"></td>
+            <td><?= $result["Nama"] ?></td>
+            <td><?= $result["NIM"] ?></td>
+            <td><?= $result["Jurusan"] ?></td>
             <td>
                 <a href="">edit</a>
                 <a href="">delete</a>
             </td>
         </tr>
+        <?php endwhile ?>
     </table>
 </body>
 </html>
