@@ -26,7 +26,7 @@ $mahasiswa = query("SELECT * FROM mahasiswa");
             border-radius: 6px;
         }
         button:hover{
-            cursor: pointer;
+            background-color: rgb(0, 150, 0);
         }
     </style>
 </head>
@@ -41,18 +41,20 @@ $mahasiswa = query("SELECT * FROM mahasiswa");
             <th>Jurusan</th>
             <th>Aksi</th>
         </tr>
+        <?php $nomor = 1; ?>
         <?php foreach($mahasiswa as $mhs) : ?>
         <tr>
-            <td><?= $mhs["id"] ?></td>
+            <td><?= $nomor ?></td>
             <td><img src="img/<?= $mhs["Gambar"]?>.png"></td>
             <td><?= $mhs["Nama"] ?></td>
             <td><?= $mhs["NIM"] ?></td>
             <td><?= $mhs["Jurusan"] ?></td>
             <td>
                 <a href="">edit</a>
-                <a href="">delete</a>
+                <a href="delete.php?id=<?= $mhs['id'] ?>" onclick=" return confirm('ingin hapus data?');">delete</a>
             </td>
         </tr>
+        <?php $nomor++ ?>
         <?php endforeach ?>
     </table>
     <button type="button" onclick="location.href='add.php'">Tambah Data</button>
