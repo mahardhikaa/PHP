@@ -14,6 +14,9 @@ $mahasiswa = query("SELECT * FROM mahasiswa");
             width: 75px;
             height: 75px;
         }
+        table {
+            text-align: center;
+        }
     </style>
 </head>
 <body>
