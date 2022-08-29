@@ -50,7 +50,7 @@ $mahasiswa = query("SELECT * FROM mahasiswa");
             <td><?= $mhs["NIM"] ?></td>
             <td><?= $mhs["Jurusan"] ?></td>
             <td>
-                <a href="">edit</a>
+                <a href="update.php?id=<?= $mhs['id'] ?>">edit</a>
                 <a href="delete.php?id=<?= $mhs['id'] ?>" onclick=" return confirm('ingin hapus data?');">delete</a>
             </td>
         </tr>
