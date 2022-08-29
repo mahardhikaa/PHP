@@ -58,6 +58,13 @@
     ?>
 
     <!-- Membuat metode get ditaruh pada link -->
-
+    <ul>
+        <?php foreach ($mahasiswa as $mhs) : ?>
+            <li>
+                <a href="latihan2.php?nama=<?= $mhs["nama"] ?>&NIM=<?= $mhs["NIM"] ?>&Jurusan=<?= $mhs["Jurusan"] ?>&Gambar=<?= $mhs["Gambar"] ?>
+                "><?= $mhs["nama"] ?></a>
+            </li>
+        <?php endforeach ?>
+    </ul>
 </body>
 </html>
