@@ -59,4 +59,15 @@ function update_data($update){
 
     return mysqli_affected_rows($conn);
 }
+
+function search($searching){
+    $keyword = $searching["search"];
+
+    $query_search = "SELECT * FROM mahasiswa
+                    WHERE nama LIKE '%$keyword%' OR
+                    NIM LIKE '%$keyword%' OR
+                    Jurusan LIKE '%$keyword%'";
+
+    return query($query_search);
+}
 ?>
