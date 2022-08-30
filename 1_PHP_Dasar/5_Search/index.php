@@ -3,6 +3,10 @@ require "function.php";
 
 $mahasiswa = query("SELECT * FROM mahasiswa");
 
+if(isset($_POST["submit"])){
+    $mahasiswa = search($_POST);
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -28,10 +32,21 @@ $mahasiswa = query("SELECT * FROM mahasiswa");
         button:hover{
             background-color: rgb(0, 150, 0);
         }
+
+        #search {
+            height: 25px;
+            margin-bottom: 30px;
+        }
     </style>
 </head>
 <body>
     <h1>Data Mahasiswa</h1>
+
+    <form action="" method="post">
+        <input type="text" placeholder="masukkan kata kunci.." name="search" size="50" autocomplete="off">
+        <button type="submit" name="submit" id="search">Cari</button>
+    </form>
+
     <table border=1 cellspacing=0 cellpadding=10>
         <tr>
             <th>No.</th>
