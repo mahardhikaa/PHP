@@ -26,11 +26,18 @@ if(isset($_POST["submit"])){
 <html>
 <head>
     <title>Update Data</title>
+    <style>
+        img {
+            height: 50px;
+            width: 50px;
+        }
+    </style>
 </head>
 <body>
     <h1>Update data</h1>
-    <form action="" method="post">
+    <form action="" method="post" enctype="multipart/form-data">
         <input type="hidden" value="<?= $mahasiswa['id']; ?>" name="id">
+        <input type="hidden" name="gambarLama" value="<?= $mahasiswa['Gambar'] ?>">
         <table cellspacing=0 cellpadding=10 border=1>
             <tr>
                 <td><label for="nama">Nama: </label></td>
@@ -46,7 +53,10 @@ if(isset($_POST["submit"])){
             </tr>
             <tr>
                 <td><label for="Gambar">Gambar: </label></td>
-                <td><input type="text" name="Gambar" id="Gambar" value="<?= $mahasiswa['Gambar']; ?>"></td>
+                <td>
+                    <img src="img/<?= $mahasiswa['Gambar'] ?>">
+                    <input type="file" name="Gambar" id="Gambar">
+                </td>
             </tr>
             <tr>
                 <td colspan=2>
