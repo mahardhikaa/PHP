@@ -60,7 +60,7 @@ if(isset($_POST["submit"])){
         <?php foreach($mahasiswa as $mhs) : ?>
         <tr>
             <td><?= $nomor ?></td>
-            <td><img src="img/<?= $mhs["Gambar"]?>.png"></td>
+            <td><img src="img/<?= $mhs['Gambar']?>"></td>
             <td><?= $mhs["Nama"] ?></td>
             <td><?= $mhs["NIM"] ?></td>
             <td><?= $mhs["Jurusan"] ?></td>
