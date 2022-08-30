@@ -126,4 +126,35 @@ function upload() {
 
     return $namaBaru;
 }
+
+function registrasi($data){
+    global $conn;
+
+    $username = strtolower(stripslashes($data["username"]));
+    $password = mysqli_real_escape_string($conn, $data["password"]);
+    $confirmPass = mysqli_real_escape_string($conn, $data["confirmPass"]);
+
+    $cekUser = mysqli_query($conn, "SELECT * FROM users WHERE username = '$username'");
+
+    if(mysqli_fetch_assoc($cekUser)){
+        echo "<script>
+                alert('username sudah dipakai'); 
+            </script>";
+        return false;
+    }
+
+    if($password !== $confirmPass){
+        echo "<script>
+                alert('password tidak sama'); 
+            </script>";
+        return false;
+    }
+
+    $passBaru = password_hash($password, PASSWORD_DEFAULT);
+    $query_addUser = "INSERT INTO users VALUES
+                    ('', '$username', '$passBaru')";
+    mysqli_query($conn, $query_addUser);
+
+    return mysqli_affected_rows($conn);
+}
 ?>
