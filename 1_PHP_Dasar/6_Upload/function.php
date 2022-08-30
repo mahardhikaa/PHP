@@ -51,7 +51,14 @@ function update_data($update){
     $nama = htmlspecialchars($update["Nama"]);
     $NIM = htmlspecialchars($update["NIM"]);
     $jurusan = htmlspecialchars($update["Jurusan"]);
-    $gambar = htmlspecialchars($update["Gambar"]);
+    $gambarLama = htmlspecialchars($update["gambarLama"]);
+
+    if($_FILES["Gambar"]["error"] == 4){
+        $gambar = $gambarLama;
+    }
+    else {
+        $gambar = upload();
+    }
 
     $query_update = "UPDATE mahasiswa SET 
                     nama = '$nama',
@@ -81,6 +88,14 @@ function upload() {
     $errorUpload = $_FILES["Gambar"]["error"];
     $alamatGambar = $_FILES["Gambar"]["tmp_name"];
     $ukuranGambar = $_FILES["Gambar"]["size"];
+
+    //cek apakah sudah ada file gambar
+    if($errorUpload==4){
+        echo "<script>
+                alert('File gambar tidak boleh kosong');
+            </script>";
+        return false;
+    }
 
     //Cek apakah gambar yang diupload
     $ekstensiValid = ['jpg', 'jpeg', 'png'];
