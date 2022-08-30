@@ -26,7 +26,7 @@ if(isset($_POST["submit"])){
 </head>
 <body>
     <h1>Tambah data</h1>
-    <form action="" method="post">
+    <form action="" method="post"  enctype="multipart/form-data">
         <table cellspacing=0 cellpadding=10 border=1>
             <tr>
                 <td><label for="nama">Nama: </label></td>
@@ -42,7 +42,7 @@ if(isset($_POST["submit"])){
             </tr>
             <tr>
                 <td><label for="Gambar">Gambar: </label></td>
-                <td><input type="text" name="Gambar" id="Gambar"></td>
+                <td><input type="file" name="Gambar" id="Gambar"></td>
             </tr>
             <tr>
                 <td colspan=2>
