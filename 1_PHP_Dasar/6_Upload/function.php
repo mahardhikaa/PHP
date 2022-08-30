@@ -18,7 +18,12 @@ function add_data($add){
     $nama = htmlspecialchars($add["Nama"]);
     $NIM = htmlspecialchars($add["NIM"]);
     $jurusan = htmlspecialchars($add["Jurusan"]);
-    $gambar = htmlspecialchars($add["Gambar"]);
+    $gambar = upload();
+
+    //Jika tidak ada gambar yang diupload
+    if(!$gambar){
+        return false;
+    }
 
     $query_add = "INSERT INTO mahasiswa
                   VALUES ('', '$nama', '$NIM', '$jurusan', '$gambar')";
@@ -69,5 +74,41 @@ function search($searching){
                     Jurusan LIKE '%$keyword%'";
 
     return query($query_search);
+}
+
+function upload() {
+    $namaGambar = $_FILES["Gambar"]["name"];
+    $errorUpload = $_FILES["Gambar"]["error"];
+    $alamatGambar = $_FILES["Gambar"]["tmp_name"];
+    $ukuranGambar = $_FILES["Gambar"]["size"];
+
+    //Cek apakah gambar yang diupload
+    $ekstensiValid = ['jpg', 'jpeg', 'png'];
+    $ekstensi = explode('.', $namaGambar);
+    $ekstensiGambar = strtolower(end($ekstensi));
+
+    if(!in_array($ekstensiGambar, $ekstensiValid)){
+        echo "<script>
+                alert('File yang diupload bukan gambar');
+            </script>";
+        return false;
+    }
+
+    //cek ukuran file
+    if($ukuranGambar > 1000000){
+        echo "<script>
+                alert('File terlalu besar');
+            </script>";
+        return false;
+    }
+
+    //Ganti nama file
+    $namaBaru = uniqid();
+    $namaBaru .= '.';
+    $namaBaru .= $ekstensiGambar;
+
+    move_uploaded_file($alamatGambar, 'img/' . $namaBaru);
+
+    return $namaBaru;
 }
 ?>
