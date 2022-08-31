@@ -1,4 +1,11 @@
-<?php 
+<?php
+//Cek apakah sudah login
+session_start();
+if(isset($_SESSION["login"])){
+    header('location: index.php');
+    exit;
+}
+
 require "function.php";
 
 if(isset($_POST["register"])){
