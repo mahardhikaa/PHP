@@ -50,6 +50,10 @@ if(isset($_POST["submit"])){
             color: white;
             margin-top: 0;
         }
+
+        #logout:hover {
+            background-color: rgb(100, 0, 0);
+        }
     </style>
 </head>
 <body>
