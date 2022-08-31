@@ -8,10 +8,25 @@ if(!isset($_SESSION["login"])){
 
 require "function.php";
 
-$mahasiswa = query("SELECT * FROM mahasiswa");
+$totalMahasiswa = query("SELECT * FROM mahasiswa");
+$dataPerHalaman = 2;
+$jumlahData = count($totalMahasiswa);
+$jumlahHalaman = ceil($jumlahData/$dataPerHalaman);
+$halamanAktif = (isset($_GET["hal"])) ? $_GET['hal'] : 1;
 
-if(isset($_POST["search"])){
-    $mahasiswa = search($_POST);
+$awalData = ($dataPerHalaman * $halamanAktif) - $dataPerHalaman;
+
+$mahasiswa = query("SELECT * FROM mahasiswa LIMIT $awalData, $dataPerHalaman");
+
+if(isset($_POST["submit_search"])){
+    $keyword = $_POST['search'];
+    $totalMahasiswa = query("SELECT * FROM mahasiswa
+                            WHERE nama LIKE '%$keyword%' OR
+                            NIM LIKE '%$keyword%' OR
+                            Jurusan LIKE '%$keyword%'");
+    $jumlahData = count($totalMahasiswa);
+    $mahasiswa = search($_POST, $awalData, $dataPerHalaman);
+    $jumlahHalaman = ceil($jumlahData/$dataPerHalaman);
 }
 
 ?>
@@ -54,6 +69,28 @@ if(isset($_POST["search"])){
         #logout:hover {
             background-color: rgb(100, 0, 0);
         }
+
+        a{
+            color: blue;
+            font-size: 24px;
+            margin-right: 12px;
+        }
+        
+        a:visited{
+            color: blue;
+        }
+
+        .pagination {
+            text-decoration: none;
+            font-weight: 800;
+            display: inline;
+            font-size: 24px;
+            margin-right: 12px;
+        }
+
+        .update {
+            margin-right: 0;
+        }
     </style>
 </head>
 <body>
@@ -62,8 +99,28 @@ if(isset($_POST["search"])){
 
     <form action="" method="post">
         <input type="text" placeholder="masukkan kata kunci.." name="search" size="50" autocomplete="off">
-        <button type="submit" name="search" id="search">Cari</button>
+        <button type="submit" name="submit_search" id="search">Cari</button>
     </form>
+    
+    <?php if($halamanAktif>1) : ?>
+        <a href="?hal=<?= $halamanAktif-1 ?>">&lt;</a>
+    <?php endif ?>
+
+    <?php for($i=1; $i<=$jumlahHalaman; $i++) : ?>
+        <?php if($i==$halamanAktif) : ?>
+            <p class="pagination"><?= $i ?></p>
+        <?php else : ?>
+            <?php if($i==1) : ?>
+                <a href="index.php"><?= $i ?></a>
+            <?php else : ?>
+                <a href="?hal=<?= $i; ?>"><?= $i ?></a>
+            <?php endif ?>
+        <?php endif ?>
+    <?php endfor ?>
+
+    <?php if($halamanAktif<$jumlahHalaman) : ?>
+        <a href="?hal=<?= $halamanAktif+1 ?>">&gt;</a>
+    <?php endif ?>
 
     <table border=1 cellspacing=0 cellpadding=10>
         <tr>
@@ -83,8 +140,8 @@ if(isset($_POST["search"])){
             <td><?= $mhs["NIM"] ?></td>
             <td><?= $mhs["Jurusan"] ?></td>
             <td>
-                <a href="update.php?id=<?= $mhs['id'] ?>">edit</a>
-                <a href="delete.php?id=<?= $mhs['id'] ?>" onclick=" return confirm('ingin hapus data?');">delete</a>
+                <a href="update.php?id=<?= $mhs['id'] ?>" class="update">edit</a>
+                <a href="delete.php?id=<?= $mhs['id'] ?>" onclick=" return confirm('ingin hapus data?');"  class="update">delete</a>
             </td>
         </tr>
         <?php $nomor++ ?>
