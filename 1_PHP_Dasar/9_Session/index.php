@@ -1,4 +1,11 @@
 <?php
+//Cek apakah sudah login
+session_start();
+if(!isset($_SESSION["login"])){
+    header("location: login.php");
+    exit;
+}
+
 require "function.php";
 
 $mahasiswa = query("SELECT * FROM mahasiswa");
@@ -37,10 +44,17 @@ if(isset($_POST["submit"])){
             height: 25px;
             margin-bottom: 30px;
         }
+
+        #logout {
+            background-color: rgb(150, 0, 0);
+            color: white;
+            margin-top: 0;
+        }
     </style>
 </head>
 <body>
     <h1>Data Mahasiswa</h1>
+    <button type="button" onclick="location.href='logout.php'" id="logout">LOGOUT</button>
 
     <form action="" method="post">
         <input type="text" placeholder="masukkan kata kunci.." name="search" size="50" autocomplete="off">
