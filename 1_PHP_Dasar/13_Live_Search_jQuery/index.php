@@ -67,7 +67,7 @@ if(isset($_COOKIE['search'])){
             background-color: rgb(0, 150, 0);
         }
 
-        #search {
+        #search, #search_clear {
             height: 25px;
             margin-bottom: 30px;
         }
@@ -103,7 +103,13 @@ if(isset($_COOKIE['search'])){
         .update {
             margin-right: 0;
         }
+
+        #search_clear {
+            display: none;
+        }
     </style>
+    <script src="js/jQuery.js"></script>
+    <script src="js/script.js"></script>
 </head>
 <body>
     <h1>Data Mahasiswa</h1>
@@ -116,9 +122,7 @@ if(isset($_COOKIE['search'])){
             <input type="text" placeholder="masukkan kata kunci.." name="search" size="50" autocomplete="off" id="keyword">
         <?php endif ?>
         <button type="submit" name="submit_search" id="search">Cari</button>
-        <?php if(isset($clear)) : ?>
-            <button type="submit" name="clear_search" id="search">X</button>
-        <?php endif ?>
+        <button type="submit" name="clear_search" id="search_clear">X</button>
     </form>
 
 <div id="container">
@@ -169,7 +173,5 @@ if(isset($_COOKIE['search'])){
     </table>
 </div>
     <button type="button" onclick="location.href='add.php'">Tambah Data</button>
-    
-    <script src="js/script.js"></script>
 </body>
 </html>
