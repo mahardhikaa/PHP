@@ -19,12 +19,12 @@ $awalData = ($dataPerHalaman * $halamanAktif) - $dataPerHalaman;
 $mahasiswa = query("SELECT * FROM mahasiswa LIMIT $awalData, $dataPerHalaman");
 
 if(isset($_POST['clear_search'])){
-    setcookie('search', '', time()-3600);
+    setcookie('search', '', time()-3600, '/');
     header('location: index.php');
 }
 
 if(isset($_POST["submit_search"])){
-    setcookie('search', $_POST['search']);
+    setcookie('search', $_POST['search'], 0, '/');
     header('location: index.php');
 }
 
@@ -113,14 +113,15 @@ if(isset($_COOKIE['search'])){
         <?php if(isset($clear)) : ?>
             <input type="text" value="<?= $_COOKIE['search'] ?>" name="search" size="50" autocomplete="off">
         <?php else : ?>
-            <input type="text" placeholder="masukkan kata kunci.." name="search" size="50" autocomplete="off">
+            <input type="text" placeholder="masukkan kata kunci.." name="search" size="50" autocomplete="off" id="keyword">
         <?php endif ?>
         <button type="submit" name="submit_search" id="search">Cari</button>
         <?php if(isset($clear)) : ?>
             <button type="submit" name="clear_search" id="search">X</button>
         <?php endif ?>
     </form>
-    
+
+<div id="container">
     <?php if($halamanAktif>1) : ?>
         <a href="?hal=<?= $halamanAktif-1 ?>">&lt;</a>
     <?php endif ?>
@@ -166,6 +167,9 @@ if(isset($_COOKIE['search'])){
         <?php $nomor++ ?>
         <?php endforeach ?>
     </table>
+</div>
     <button type="button" onclick="location.href='add.php'">Tambah Data</button>
+    
+    <script src="js/script.js"></script>
 </body>
 </html>
