@@ -18,15 +18,27 @@ $awalData = ($dataPerHalaman * $halamanAktif) - $dataPerHalaman;
 
 $mahasiswa = query("SELECT * FROM mahasiswa LIMIT $awalData, $dataPerHalaman");
 
+if(isset($_POST['clear_search'])){
+    setcookie('search', '', time()-3600);
+    header('location: index.php');
+}
+
 if(isset($_POST["submit_search"])){
-    $keyword = $_POST['search'];
+    setcookie('search', $_POST['search']);
+    header('location: index.php');
+}
+
+if(isset($_COOKIE['search'])){
+    $keyword = $_COOKIE['search'];
     $totalMahasiswa = query("SELECT * FROM mahasiswa
                             WHERE nama LIKE '%$keyword%' OR
                             NIM LIKE '%$keyword%' OR
                             Jurusan LIKE '%$keyword%'");
     $jumlahData = count($totalMahasiswa);
-    $mahasiswa = search($_POST, $awalData, $dataPerHalaman);
+    $mahasiswa = search($_COOKIE, $awalData, $dataPerHalaman);
     $jumlahHalaman = ceil($jumlahData/$dataPerHalaman);
+
+    $clear = true;
 }
 
 ?>
@@ -98,8 +110,15 @@ if(isset($_POST["submit_search"])){
     <button type="button" onclick="location.href='logout.php'" id="logout">LOGOUT</button>
 
     <form action="" method="post">
-        <input type="text" placeholder="masukkan kata kunci.." name="search" size="50" autocomplete="off">
+        <?php if(isset($clear)) : ?>
+            <input type="text" value="<?= $_COOKIE['search'] ?>" name="search" size="50" autocomplete="off">
+        <?php else : ?>
+            <input type="text" placeholder="masukkan kata kunci.." name="search" size="50" autocomplete="off">
+        <?php endif ?>
         <button type="submit" name="submit_search" id="search">Cari</button>
+        <?php if(isset($clear)) : ?>
+            <button type="submit" name="clear_search" id="search">X</button>
+        <?php endif ?>
     </form>
     
     <?php if($halamanAktif>1) : ?>
