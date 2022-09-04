@@ -113,13 +113,20 @@ if(isset($_COOKIE['search'])){
                 display: none;
             }
         }
+
+        #print {
+            margin: 0;
+            background-color: rgb(0,0,170);
+            color: white;
+        }
     </style>
     <script src="js/jQuery.js"></script>
     <script src="js/script.js"></script>
 </head>
 <body>
     <h1>Data Mahasiswa</h1>
-    <button type="button" onclick="location.href='logout.php'" id="logout">LOGOUT</button>
+    <button type="submit" onclick="location.href='logout.php'" id="logout">LOGOUT</button>
+    <button type="submit" onclick="window.open('print.php', '_blank')" id="print" target="_blank">Cetak</button>
 
     <form action="" method="post" class="formSearch">
         <?php if(isset($clear)) : ?>
