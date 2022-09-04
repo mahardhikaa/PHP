@@ -107,6 +107,12 @@ if(isset($_COOKIE['search'])){
         #search_clear {
             display: none;
         }
+
+        @media print {
+            button, .formSearch, .aksi {
+                display: none;
+            }
+        }
     </style>
     <script src="js/jQuery.js"></script>
     <script src="js/script.js"></script>
@@ -115,7 +121,7 @@ if(isset($_COOKIE['search'])){
     <h1>Data Mahasiswa</h1>
     <button type="button" onclick="location.href='logout.php'" id="logout">LOGOUT</button>
 
-    <form action="" method="post">
+    <form action="" method="post" class="formSearch">
         <?php if(isset($clear)) : ?>
             <input type="text" value="<?= $_COOKIE['search'] ?>" name="search" size="50" autocomplete="off">
         <?php else : ?>
@@ -153,7 +159,7 @@ if(isset($_COOKIE['search'])){
             <th>Nama</th>
             <th>NIM</th>
             <th>Jurusan</th>
-            <th>Aksi</th>
+            <th class="aksi">Aksi</th>
         </tr>
         <?php $nomor = 1; ?>
         <?php foreach($mahasiswa as $mhs) : ?>
@@ -163,7 +169,7 @@ if(isset($_COOKIE['search'])){
             <td><?= $mhs["Nama"] ?></td>
             <td><?= $mhs["NIM"] ?></td>
             <td><?= $mhs["Jurusan"] ?></td>
-            <td>
+            <td class="aksi">
                 <a href="update.php?id=<?= $mhs['id'] ?>" class="update">edit</a>
                 <a href="delete.php?id=<?= $mhs['id'] ?>" onclick=" return confirm('ingin hapus data?');"  class="update">delete</a>
             </td>
