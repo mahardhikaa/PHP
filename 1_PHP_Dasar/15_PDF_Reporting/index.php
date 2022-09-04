@@ -9,7 +9,7 @@ if(!isset($_SESSION["login"])){
 require "function.php";
 
 $totalMahasiswa = query("SELECT * FROM mahasiswa");
-$dataPerHalaman = 2;
+$dataPerHalaman = 3;
 $jumlahData = count($totalMahasiswa);
 $jumlahHalaman = ceil($jumlahData/$dataPerHalaman);
 $halamanAktif = (isset($_GET["hal"])) ? $_GET['hal'] : 1;
@@ -118,6 +118,10 @@ if(isset($_COOKIE['search'])){
             margin: 0;
             background-color: rgb(0,0,170);
             color: white;
+        }
+        
+        #print:hover {
+            background-color: rgb(0,0, 100);
         }
     </style>
     <script src="js/jQuery.js"></script>
