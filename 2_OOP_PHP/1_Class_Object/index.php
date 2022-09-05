@@ -1,17 +1,20 @@
 <?php
 
+//class
 class Produk {
+    //Property
     public $judul,
            $penulis,
            $tahun,
            $pembaca;
     
+    //Method
     public function getProperty() {
         return "$this->judul, $this->penulis, $this->tahun, $this->pembaca";
     }
 }
 
-
+//Object
 $komik = new Produk();
 $game = new Produk();
 $novel = new Produk();
