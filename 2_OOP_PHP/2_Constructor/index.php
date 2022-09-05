@@ -8,6 +8,14 @@ class Produk {
            $tahun,
            $pembaca;
     
+    //Magic Method
+    public function __construct($judul="Tidak ada", $penulis="Tidak ada", $tahun=0, $pembaca=0) {
+        $this->judul = $judul;
+        $this->penulis = $penulis;
+        $this->tahun = $tahun;
+        $this->pembaca = $pembaca;
+    }
+
     //Method
     public function getProperty() {
         return "$this->judul, $this->penulis, $this->tahun, $this->pembaca";
@@ -15,28 +23,16 @@ class Produk {
 }
 
 //Object
-$komik = new Produk();
-$game = new Produk();
-$novel = new Produk();
-
-$komik->judul = "One Piece";
-$komik->penulis = "Masashi Kishimoto";
-$komik->tahun = 1999;
-$komik->pembaca = 200000;
-
-$game->judul = "Auto Chess";
-$game->penulis = "Super Cell";
-$game->tahun = 2014;
-$game->pembaca = 1000000;
-
-$novel->judul = "Bumi";
-$novel->penulis = "Tere Liye";
-$novel->tahun = 2018;
-$novel->pembaca = 300000;
+$komik = new Produk("One Piece", "Masashi Kishimoto", 1999, 200000);
+$game = new Produk("Auto Chess", "Super Cell", 2014, 1000000);
+$novel = new Produk("Bumi", "Tere Liye");
+$buku = new Produk();
 
 echo "Komik: ". $komik->getProperty();
 echo "<br>";
 echo "Game: " . $game->getProperty();
 echo "<br>";
 echo "Novel: " . $novel->getProperty();
+echo "<br>";
+echo "Buku: " . $buku->getProperty();
 ?>
