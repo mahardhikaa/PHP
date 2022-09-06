@@ -6,14 +6,16 @@ class Produk {
     public $judul,
            $penulis,
            $tahun,
-           $pembaca;
+           $pembaca,
+           $pemain;
     
     //Magic Method
-    public function __construct($judul="Tidak ada", $penulis="Tidak ada", $tahun=0, $pembaca=0) {
+    public function __construct($judul="Tidak ada", $penulis="Tidak ada", $tahun=0, $pembaca=0, $pemain=0) {
         $this->judul = $judul;
         $this->penulis = $penulis;
         $this->tahun = $tahun;
         $this->pembaca = $pembaca;
+        $this->pemain = $pemain;
     }
 
     //Method
@@ -22,6 +24,7 @@ class Produk {
     }
 }
 
+//Object type
 class infoProduk {
     public function cetak(Produk $produk) {
         $str = "{$produk->judul} | {$produk->penulis}, {$produk->tahun} ({$produk->pembaca} Orang)";
@@ -29,9 +32,24 @@ class infoProduk {
     }
 }
 
+//Inheritance
+class Komik extends Produk {
+    public function getInfoKomik() {
+        $str = "Komik: {$this->judul} | {$this->penulis}, {$this->tahun} ({$this->pembaca} Orang)";
+        return $str;
+    }
+}
+
+class Game extends Produk {
+    public function getInfoGame() {
+        $str = "Komik: {$this->judul} | {$this->penulis}, {$this->tahun} ({$this->pemain} / Jam)";
+        return $str;
+    }
+}
+
 //Object
-$komik = new Produk("One Piece", "Masashi Kishimoto", 1999, 200000);
-$game = new Produk("Auto Chess", "Super Cell", 2014, 1000000);
+$komik = new Komik("One Piece", "Masashi Kishimoto", 1999, 200000, 0);
+$game = new Game("Auto Chess", "Super Cell", 2014, 0, 50);
 $novel = new Produk("Bumi", "Tere Liye");
 $buku = new Produk();
 
@@ -56,4 +74,13 @@ echo "<br>";
 echo $cetakInfoProduk->cetak($novel);
 echo "<br>";
 echo $cetakInfoProduk->cetak($buku);
+
+echo "<br>";
+echo "<br>";
+
+//Cetak class inheritance
+echo $komik->getInfoKomik();
+echo "<br>";
+echo $game->getInfoGame();
+
 ?>
