@@ -1,7 +1,7 @@
 <?php
 
 //class
-class Produk {
+abstract class Produk {
     //Property
     private $judul,
            $penulis,
@@ -18,7 +18,9 @@ class Produk {
     }
 
     //Method
-    public function getProperty() {
+    abstract public function getProperty();
+
+    public function getInfo() {
         return "{$this->judul} | {$this->penulis}, {$this->tahun}";
     }
 
@@ -71,8 +73,8 @@ class Komik extends Produk {
         parent::__construct($judul, $penulis, $tahun, $harga); //Overriding
     }
 
-    public function getInfoKomik() {
-        $str = "Komik: {$this->getProperty()} ({$this->pembaca} Orang)";
+    public function getProperty() {
+        $str = "Komik: {$this->getInfo()} ({$this->pembaca} Orang)";
         return $str;
     }
 }
@@ -85,8 +87,25 @@ class Game extends Produk {
         parent::__construct($judul, $penulis, $tahun, $harga); //Overriding
     }
 
-    public function getInfoGame() {
-        $str = "Game: {$this->getProperty()} ({$this->pemain} / Jam)";
+    public function getProperty() {
+        $str = "Game: {$this->getInfo()} ({$this->pemain} / Jam)";
+        return $str;
+    }
+}
+
+class cetakProduk {
+    public $daftarProduk = [];
+
+    public function addProduk($produk) {
+        $this->daftarProduk[] = $produk;
+    }
+
+    public function cetakInfo() {
+        $str = "Daftar Produk: <br>";
+        
+        foreach($this->daftarProduk as $produk){
+            $str .= "{$produk->getProperty()} <br>";
+        }
         return $str;
     }
 }
@@ -94,60 +113,14 @@ class Game extends Produk {
 //Object
 $komik = new Komik("One Piece", "Oda Sensei", 1999, 200000, 55000);
 $game = new Game("Auto Chess", "Super Cell", 2014, 50, 100000);
-$novel = new Produk("Bumi", "Tere Liye");
-$buku = new Produk();
+// $novel = new Produk("Bumi", "Tere Liye");
+// $buku = new Produk();
 
-echo "Komik: ". $komik->getProperty();
-echo "<br>";
-echo "Game: " . $game->getProperty();
-echo "<br>";
-echo "Novel: " . $novel->getProperty();
-echo "<br>";
-echo "Buku: " . $buku->getProperty();
+$cetak = new cetakProduk();
+$cetak->addProduk($komik);
+$cetak->addProduk($game);
+echo $cetak->cetakInfo();
 
-echo "<hr>";
 
-echo $komik->getInfoKomik();
-echo "<br>";
-echo $game->getInfoGame();
-
-echo "<hr>";
-
-//Sebelum diubah
-echo "<b style='color: blue'>Sebelum diubah</b><br>";
-echo "<b>Komik</b><br>";
-echo "Judul: " . $komik->getJudul() . "<br>";
-echo "penulis: " . $komik->getPenulis() . "<br>";
-echo "Harga: " . $komik->getHarga() . "<br>";
-echo "Diskon: " . $komik->getDiskon() . "<br>";
-echo "Harga Diskon: " . $komik->getHargaDiskon() . "<br><br>";
-
-echo "<b>Game</b><br>";
-echo "Judul: " . $game->getJudul() . "<br>";
-echo "penulis: " . $game->getPenulis() . "<br>";
-echo "Harga: " . $game->getHarga() . "<br>";
-echo "Diskon: " . $game->getDiskon() . "<br>";
-echo "Harga Diskon: " . $game->getHargaDiskon() . "<br><br>";
-
-echo "<b style='color: blue'>Setelah diubah</b><br>";
-$komik->setJudul("Naruto");
-$komik->setPenulis("Masashi Kisimoto");
-$komik->setDiskon(30);
-echo "<b>Komik</b><br>";
-echo "Judul: " . $komik->getJudul() . "<br>";
-echo "penulis: " . $komik->getPenulis() . "<br>";
-echo "Harga: " . $komik->getHarga() . "<br>";
-echo "Diskon: " . $komik->getDiskon() . "<br>";
-echo "Harga Diskon: " . $komik->getHargaDiskon() . "<br><br>";
-
-$game->setJudul("Mobile Legend");
-$game->setPenulis("Moonton");
-$game->setDiskon(100);
-echo "<b>Game</b><br>";
-echo "Judul: " . $game->getJudul() . "<br>";
-echo "penulis: " . $game->getPenulis() . "<br>";
-echo "Harga: " . $game->getHarga() . "<br>";
-echo "Diskon: " . $game->getDiskon() . "<br>";
-echo "Harga Diskon: " . $game->getHargaDiskon() . "<br><br>";
 
 ?>
