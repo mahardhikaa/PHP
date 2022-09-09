@@ -8,9 +8,16 @@ $game = new Game("Auto Chess", "Super Cell", 2014, 50, 100000);
 // $novel = new Produk("Bumi", "Tere Liye");
 // $buku = new Produk();
 
-$cetak = new cetakProduk();
-$cetak->addProduk($komik);
-$cetak->addProduk($game);
-echo $cetak->cetakInfo();
+// $cetak = new cetakProduk();
+// $cetak->addProduk($komik);
+// $cetak->addProduk($game);
+// echo $cetak->cetakInfo();
+
+use App\Produk\User as produkUser;
+use App\Service\User as serviceUser;
+
+new produkUser();
+echo "<br>";
+new serviceUser();
 
 ?>
