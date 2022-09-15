@@ -6,6 +6,7 @@
             <td>Nama</td>
             <td>NIM</td>
             <td>Jurusan</td>
+            <td>Aksi</td>
         </th>
     </thead>
     <tbody>
@@ -16,6 +17,7 @@
             <td><?= $mhs['Nama']?></td>
             <td><?= $mhs['NIM']?></td>
             <td><?= $mhs['Jurusan']?></td>
+            <td><a href="<?= BASEURL; ?>/mahasiswa/detail/<?= $mhs['id'] ?>" class="badge rounded-pill text-bg-primary">Detail</a></td>
             <?php $i++ ?>
         </tr>
     <?php endforeach ?>
