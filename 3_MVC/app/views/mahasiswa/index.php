@@ -35,8 +35,8 @@
         <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
-        <form action="<?= BASEURL; ?>/mahasiswa/tambah" method="POST">
+      <form action="<?= BASEURL; ?>/mahasiswa/tambah" method="POST">
+        <div class="modal-body">
           <div class="mb-3">
             <label for="Nama" class="form-label">Nama</label>
             <input type="text" class="form-control" id="Nama" name="Nama">
@@ -49,12 +49,12 @@
             <label for="Jurusan" class="form-label">Jurusan</label>
             <input type="text" class="form-control" id="Jurusan" name="Jurusan">
           </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Tambah Data</button>
-      </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Tambah Data</button>
+        </div>
+      </form>
     </div>
   </div>
 </div>
