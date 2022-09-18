@@ -1,4 +1,7 @@
 <div class="container">
+
+<?php Flasher::flash() ?>
+
 <button type="button" class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#tambahData">Tambah data Mahasiswa</button>
 <h3 class="mt-3">Daftar Mahasiswa</h3>
 <table class="table table-success table-striped">
