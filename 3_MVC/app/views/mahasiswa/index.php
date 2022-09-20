@@ -22,6 +22,7 @@
             <td><?= $mhs['NIM']?></td>
             <td><?= $mhs['Jurusan']?></td>
             <td><a href="<?= BASEURL; ?>/mahasiswa/detail/<?= $mhs['id'] ?>" class="badge text-decoration-none rounded-pill text-bg-primary">Detail</a>
+                <a href="<?= BASEURL; ?>/mahasiswa/ubah/<?= $mhs['id'] ?>" class="badge text-decoration-none rounded-pill text-bg-success ubahData" data-bs-toggle="modal" data-bs-target="#tambahData">Ubah</a>
                 <a href="<?= BASEURL; ?>/mahasiswa/hapus/<?= $mhs['id'] ?>" class="badge text-decoration-none rounded-pill text-bg-danger" onclick="return confirm('hapus data?')">Hapus</a></td>
             <?php $i++ ?>
         </tr>
@@ -36,7 +37,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="modalLabel">Tambah Data Mahasiswa</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <form action="<?= BASEURL; ?>/mahasiswa/tambah" method="POST">
