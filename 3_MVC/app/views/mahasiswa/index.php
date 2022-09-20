@@ -22,7 +22,7 @@
             <td><?= $mhs['NIM']?></td>
             <td><?= $mhs['Jurusan']?></td>
             <td><a href="<?= BASEURL; ?>/mahasiswa/detail/<?= $mhs['id'] ?>" class="badge text-decoration-none rounded-pill text-bg-primary">Detail</a>
-                <a href="<?= BASEURL; ?>/mahasiswa/ubah/<?= $mhs['id'] ?>" class="badge text-decoration-none rounded-pill text-bg-success ubahData" data-bs-toggle="modal" data-bs-target="#tambahData">Ubah</a>
+                <a href="<?= BASEURL; ?>/mahasiswa/ubah/<?= $mhs['id'] ?>" class="badge text-decoration-none rounded-pill text-bg-success ubahData" data-bs-toggle="modal" data-bs-target="#tambahData" data-id="<?= $mhs['id'] ?>">Ubah</a>
                 <a href="<?= BASEURL; ?>/mahasiswa/hapus/<?= $mhs['id'] ?>" class="badge text-decoration-none rounded-pill text-bg-danger" onclick="return confirm('hapus data?')">Hapus</a></td>
             <?php $i++ ?>
         </tr>
@@ -42,6 +42,8 @@
       </div>
       <form action="<?= BASEURL; ?>/mahasiswa/tambah" method="POST">
         <div class="modal-body">
+          <input type="hidden" name="id" id="id">
+          <input type="hidden" name="Gambar" id="Gambar">
           <div class="mb-3">
             <label for="Nama" class="form-label">Nama</label>
             <input type="text" class="form-control" id="Nama" name="Nama">
