@@ -21,7 +21,8 @@
             <td><?= $mhs['Nama']?></td>
             <td><?= $mhs['NIM']?></td>
             <td><?= $mhs['Jurusan']?></td>
-            <td><a href="<?= BASEURL; ?>/mahasiswa/detail/<?= $mhs['id'] ?>" class="badge text-decoration-none rounded-pill text-bg-primary">Detail</a></td>
+            <td><a href="<?= BASEURL; ?>/mahasiswa/detail/<?= $mhs['id'] ?>" class="badge text-decoration-none rounded-pill text-bg-primary">Detail</a>
+                <a href="<?= BASEURL; ?>/mahasiswa/hapus/<?= $mhs['id'] ?>" class="badge text-decoration-none rounded-pill text-bg-danger" onclick="return confirm('hapus data?')">Hapus</a></td>
             <?php $i++ ?>
         </tr>
     <?php endforeach ?>
