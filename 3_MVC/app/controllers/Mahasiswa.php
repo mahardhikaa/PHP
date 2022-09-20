@@ -23,6 +23,11 @@ class Mahasiswa extends Controller {
             header("Location:" . BASEURL . "/mahasiswa");
             exit;
         }
+        else {
+            Flasher::setFlash('Gagal', 'Ditambahkan', 'danger');
+            header("Location:" . BASEURL . "/mahasiswa");
+            exit;
+        }
     }
 }
 
