@@ -3,6 +3,7 @@
 <head>
     <title><?= $data['judul']?></title>
     <link rel="stylesheet" href="<?= BASEURL; ?>/css/bootstrap.css">
+    <script src="<?= BASEURL; ?>/js/jQuery.js"></script>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg bg-light">
