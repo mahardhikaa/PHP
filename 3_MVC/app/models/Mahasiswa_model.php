@@ -61,6 +61,17 @@ class Mahasiswa_model {
 
         return $this->db->rowCount();
     }
+
+    public function cariDataMhs(){
+        $keyword = $_POST['keyword'];
+        $query = "SELECT * FROM mahasiswa 
+                  WHERE Nama LIKE :keyword OR
+                  NIM LIKE :keyword OR
+                  Jurusan LIKE :keyword";
+        $this->db->query($query);
+        $this->db->bind('keyword', "%$keyword%");
+        return $this->db->resultAll();
+    }
 }
 
 ?>
