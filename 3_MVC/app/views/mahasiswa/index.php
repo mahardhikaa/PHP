@@ -2,6 +2,13 @@
 
 <?php Flasher::flash() ?>
 
+<form action="<?= BASEURL; ?>/mahasiswa/cari" method="post">
+  <div class="input-group mt-3">
+    <input type="text" class="form-control" placeholder="Masukkan kata pencarian..." aria-label="Recipient's username" aria-describedby="button-addon2" name="keyword" id="keyword">
+    <button class="btn btn-primary" type="submit" id="cariData">Cari</button>
+  </div>
+</form>
+
 <button type="button" class="btn btn-primary mt-3 tambahData" data-bs-toggle="modal" data-bs-target="#tambahData">Tambah data Mahasiswa</button>
 <h3 class="mt-3">Daftar Mahasiswa</h3>
 <table class="table table-success table-striped">
