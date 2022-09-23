@@ -1,9 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Home</title>
-</head>
-<body>
+@extends('layouts.main')
+
+@section('container')
     <h3>Home Page</h3>
-</body>
-</html>
+@endsection
