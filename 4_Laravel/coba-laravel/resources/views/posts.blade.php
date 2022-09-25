@@ -1,10 +1,12 @@
 @extends('layouts.main')
 
 @section('container')
+    <h3>Blog Post</h3>
+
     @foreach($posts as $post)
         <article>
             <h4>
-                <a href="/posts/{{ $post->id }}">
+                <a href="/posts/{{ $post->slug }}">
                     {{ $post->title }}        
                 </a>
             </h4>
