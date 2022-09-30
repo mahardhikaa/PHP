@@ -11,7 +11,7 @@
                 </a>
             </h4>
             <h5>
-                <a href="#">By: {{ $post->user->name }}</a>
+                <a href="/authors/{{ $post->authors->username }}">By: {{ $post->authors->name }}</a>
             </h5>
             <p>Category: <a href="/categories/{{ $post->category->slug }}">{{ $post->category->name }}</a></p>
             <p>{{ $post->excerpt }}</p>
