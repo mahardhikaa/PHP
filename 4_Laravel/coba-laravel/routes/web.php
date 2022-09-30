@@ -4,8 +4,8 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PostController;
 use App\Models\Posts;
 use Illuminate\Support\Facades\Route;
-
-
+use Monolog\Handler\RotatingFileHandler;
+use App\Models\User;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -37,3 +37,10 @@ Route::get('posts/{post:slug}', [PostController::class, 'show']); //Single Post
 
 Route::get('/categories', [CategoryController::class, 'index']); //List category
 Route::get('/categories/{category:slug}', [CategoryController::class, 'category_post']); //List post with category
+
+Route::get('/authors/{author:username}', function(User $author){
+    return view('posts', [
+        'title' => 'Author Post',
+        'posts' => $author->post
+    ]);
+});
